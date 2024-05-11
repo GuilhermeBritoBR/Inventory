@@ -1,50 +1,42 @@
-function HomePage(){
-var formulario = document.createElement('form');
-formulario.id = 'meuFormulario';
+formulario.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var nome = document.getElementById('nome').value;
+    var value = document.getElementById('value').value;
+    var type = document.getElementById('Type').value;
 
-var labelNome = document.createElement('label');
-labelNome.textContent = 'Nome:';
-formulario.appendChild(labelNome);
-
-var inputNome = document.createElement('input');
-inputNome.type = 'text';
-inputNome.id = 'nome';
-inputNome.name = 'nome';
-inputNome.required = true;
-formulario.appendChild(inputNome);
-formulario.appendChild(document.createElement('br'));
-
-var labelEmail = document.createElement('label');
-labelEmail.textContent = 'E-mail:';
-formulario.appendChild(labelEmail);
-
-var inputEmail = document.createElement('input');
-inputEmail.type = 'email';
-inputEmail.id = 'email';
-inputEmail.name = 'email';
-inputEmail.required = true;
-formulario.appendChild(inputEmail);
-formulario.appendChild(document.createElement('br'));
-
-var labelMensagem = document.createElement('label');
-labelMensagem.textContent = 'Mensagem:';
-formulario.appendChild(labelMensagem);
-
-var textareaMensagem = document.createElement('textarea');
-textareaMensagem.id = 'mensagem';
-textareaMensagem.name = 'mensagem';
-textareaMensagem.rows = '4';
-textareaMensagem.required = true;
-formulario.appendChild(textareaMensagem);
-formulario.appendChild(document.createElement('br'));
-
-var botaoEnviar = document.createElement('button');
-botaoEnviar.type = 'submit';
-botaoEnviar.textContent = 'Enviar';
-formulario.appendChild(botaoEnviar);
-
-
-document.body.appendChild(formulario);
-
+    console.log('Nome:', nome);
+    console.log('value', value);
+    console.log('Type:', type);
+    
+});
+function styles(){
+let style = `
+    <style>
+    html{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style> 
+    `
+    let body = document.getElementsByTagName('body');
+    body.innerHTML = `
+    <style>
+    html{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+    }
+    </style> 
+    `
+    
+    
+    
 }
- HomePage();
+styles();

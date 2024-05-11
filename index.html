@@ -1,46 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <title>Home | Inventario</title>
         <meta charset="utf-8">
+        <script src="./source/scripts/screenHome.js"></script>
+        <link rel="stylesheet" href="/source/styles/styles.css" type="text/css"/>
     </head>
-    <body onload="HomePage()">
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Formulário HTML</title>
-        </head>
-        <body>
-            <h2>Formulário HTML</h2>
-            <form id="meuFormulario" method="POST" action="/submit">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required><br><br>
+    <body>
+        <body onload="styles()">
+            
+            <form id="Form" method="POST" action="/submit">
+                <h2>INVENTÁRIO</h2>
+                <input type="text" id="nome" placeholder="Nome do objeto" name="nome" required><br>
         
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="value" id="value" placeholder="Valor do objeto" name="value" required><br>
+                <select id="type" name="type" placeholder="Tipo de objeto" required/>
+                    <option value="Eletrônicos">Eletrônicos</option>
+                    <option value="Tênis">Tênis</option>
+                    <option value="Roupas">Roupas</option>
+                    <option value="Veículos">Veículos</option>
+                    <option value="Investimentos">Investimentos</option>
+                </select>
+                <br>
         
-                <label for="mensagem">Mensagem:</label><br>
-                <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br><br>
-        
-                <button type="submit">Enviar</button>
+                <button type="submit">Enviar</button><br>
             </form>
         </body>
         </html>
         
     </body>
-    <script>
-        formulario.addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    var nome = document.getElementById('nome').value;
-    var email = document.getElementById('email').value;
-    var mensagem = document.getElementById('mensagem').value;
-
-    console.log('Nome:', nome);
-    console.log('E-mail:', email);
-    console.log('Mensagem:', mensagem);
-});
-    </script>
 </html>
