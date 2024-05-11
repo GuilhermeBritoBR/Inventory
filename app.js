@@ -23,42 +23,17 @@ const server = http.createServer((req, res) => {
             }else{
             res.writeHead(200, { 'Content-Type': 'text/html', });
             res.write( `
-    <style>
-    html{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
+    <script>
+    function save(){
+        const name = document.getElementById("nome");
+        const type = document.getElementById("type");
+        const value = document.getElementById("value");
+        localStorage.setItem("nome",name.value);
+        localStorage.setItem("type",type.value);
+        localStorage.setItem("value",value.value);   
     }
-    input, select{
-        height: 36px;
-        width: 160px;
-        font-size: 18px;
-        margin: 3px;
-        display: block;
-        border-radius: 5px;
-    }
-    button{
-        height: 36px;
-        width: 160px;
-        font-size: 18px;
-        margin: 3px;
-        display: block;
-        border-radius: 5px;
-    }
-    form{
-        text-align: center;
-        padding: 30px;
-        background-color: #000000; 
-        border-radius: 15px;
-    }
-    form h2{
-        color: #ffffff;
-    }
-    
-    </style> 
+    </script>
+    ${styles}
     `)
             res.end(data);
         }
@@ -85,9 +60,9 @@ const server = http.createServer((req, res) => {
                     //getting content to json archive 
                     const contentJson = JSON.parse(data);
                     //add data in json archive
-                    contentJson.itens.name = nome;
-                    contentJson.itens.value = value;
-                    contentJson.itens.type = type;
+                    contentJson.name = nome;
+                    contentJson.value = value;
+                    contentJson.type = type;
                     const matrix = {
                         nome: nome,
                         value: value,
@@ -102,27 +77,29 @@ const server = http.createServer((req, res) => {
                         }
                         console.log('Update successful in writing');
                         res.writeHead(200, { 'Content-Type': 'text/html'});
+                        const filePath = path.join(__dirname, 'index.html');
                         res.end(`
-                        <style>
-                        form{
-                            text-align: center;
-                            padding: 30px;
-                            background-color: #000000; 
-                            border-radius: 15px;
+                        <meta charset ='utf-8'/>
+                        <script>
+                        function home(){
+                            confirm('Você deseja voltar a tela incial?')
+                            if(confirm === 'sim'){
+                                ${fs.readFile(filePath, 'utf-8', (err, data) => {
+                                    
+                                })
+                            }else{
+                                window.location.reload();
+                            }
                         }
-                        form h2{
-                            color: #ffffff;
-                        }
+                        </script>
+                        ${styles}
                         
-                        </style> 
-
-                        <form>
-                        <div style="text-align: center">
-                        <h1>Enviado com sucesso!</h1>
-                        <h2> ${nome} </h2>
-                        <h2>${value }</h2>
-                        <h2>${type}</h2>
-                        </div>
+                        <form style="text-align: center;">
+                        <h2>Enviado com sucesso!</h2>
+                        <h2>Nome:${nome} </h2>
+                        <h2>Valor: R$${value }</h2>
+                        <h2>Tipo:${type}</h2>
+                        <button onclick="home()">Voltar</button>
                         </form>
                         `);
                         
@@ -140,3 +117,48 @@ const PORT = '3000';
 server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+var styles =` <style>
+html{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+input, select{
+    height: 36px;
+    width: 160px;
+    font-size: 18px;
+    margin: 3px;
+    display: block;
+    border-radius: 5px;
+}
+button{
+    height: 36px;
+    width: 160px;
+    font-size: 18px;
+    margin: 3px;
+    display: block;
+    border-radius: 5px;
+}
+form{
+    text-align: center;
+    padding: 30px;
+    background-color: #000000; 
+    border-radius: 15px;
+}
+form h2{
+    color: #ffffff;
+}
+form h2{
+    color: #ffffff;
+}
+a{
+    text-decoration: none;
+
+}
+
+</style> 
+`

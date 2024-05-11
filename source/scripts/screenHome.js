@@ -35,8 +35,14 @@ let style = `
     }
     </style> 
     `
-    
-    
+    const numbers = [1,2,3,4,5,6,7];
+    const new_numbers = numbers.p
+    confirm('Você deseja voltar a tela incial?')
+    if(confirm === 'sim'){
+        alert('Acesse "localhost:3000"');
+    }else{
+        window.location.reload();
+    }
     
 }
 styles();
